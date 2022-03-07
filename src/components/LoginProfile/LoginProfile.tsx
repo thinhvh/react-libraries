@@ -9,7 +9,7 @@ export interface LoginProfileProps {
 
 const LoginProfile: React.FC<Partial<LoginProfileProps>> = (props) => {
   const { fullName = '', size = '32px' } = props;
-  const [openProfileMenu, setOpenProfileMenu] = useState<boolean>(false);
+  const [openProfileMenu, setOpenProfileMenu] = useState(false);
   const [anchor, setAnchor] = useState<EventTarget & HTMLButtonElement>();
   const firstCharacter = fullName.charAt(0);
 
