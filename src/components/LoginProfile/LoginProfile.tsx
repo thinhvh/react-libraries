@@ -32,8 +32,10 @@ const LoginProfile: React.FC<Partial<LoginProfileProps>> = (props) => {
         </button>
       </div>
       <Portal open={openProfileMenu} anchor={anchor}>
-        <div>
-          Testing Portal Testing Portal Testing Portal
+        <div className={styles.menu}>
+          <div className={styles.logout} role="menuitem">
+            Log out
+          </div>
         </div>
       </Portal>
     </>
