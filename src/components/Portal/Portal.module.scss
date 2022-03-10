@@ -1,4 +1,19 @@
 .portalContainer {
-    position: fixed;
-    z-index: 9999;
+  position: fixed;
+  z-index: 9999;
+  animation-name: toggle-menu;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes toggle-menu {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
 }
