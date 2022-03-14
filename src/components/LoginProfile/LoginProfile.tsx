@@ -8,8 +8,11 @@ export interface LoginProfileProps {
   onLogout?: Function;
 }
 
-const LoginProfile: React.FC<Partial<LoginProfileProps>> = (props) => {
-  const { fullName = "", size = "32px", onLogout } = props;
+const LoginProfile: React.FC<Partial<LoginProfileProps>> = ({
+  fullName = "",
+  size = "32px",
+  onLogout,
+}) => {
   const [openProfileMenu, setOpenProfileMenu] = useState(false);
   const [anchor, setAnchor] = useState<EventTarget & HTMLButtonElement>();
   const firstCharacter = fullName.charAt(0);
@@ -33,12 +36,20 @@ const LoginProfile: React.FC<Partial<LoginProfileProps>> = (props) => {
           width: size,
           height: size,
         }}
+        data-testid="login-profile"
       >
-        <button onClick={onClickProfile}>{firstCharacter}</button>
+        <button data-testid="toggle-button" onClick={onClickProfile}>
+          {firstCharacter}
+        </button>
       </div>
       <Portal open={openProfileMenu} anchor={anchor}>
-        <div className={styles.menu}>
-          <div className={styles.logout} role="menuitem" onClick={logout}>
+        <div className={styles.menu} data-testid="menu-profile">
+          <div
+            data-testid="logout-button"
+            className={styles.logout}
+            role="menuitem"
+            onClick={logout}
+          >
             Log out
           </div>
         </div>
