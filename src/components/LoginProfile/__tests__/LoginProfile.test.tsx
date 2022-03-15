@@ -1,4 +1,4 @@
-import { cleanup, render, screen, waitFor } from "@testing-library/react"; // (or /dom, /vue, ...)
+import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import LoginProfile from "../LoginProfile";
 
 afterEach(() => {

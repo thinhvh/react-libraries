@@ -25,7 +25,7 @@ const PortalChildren: React.FC<PortalProps> = (props) => {
     right = 0,
     width = 0,
     height = 0,
-  } = anchor?.getBoundingClientRect() || {};
+  } = anchor?.getBoundingClientRect?.() || {};
   const topPos = top + height;
   const rightPos = right - width;
   return (
@@ -37,6 +37,7 @@ const PortalChildren: React.FC<PortalProps> = (props) => {
             top: topPos,
             right: rightPos,
           }}
+          data-testid="portal-container"
         >
           {children}
         </div>
