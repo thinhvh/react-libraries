@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "./Portal.module.scss";
 
@@ -22,20 +23,33 @@ const PortalChildren: React.FC<PortalProps> = (props) => {
   const { open, anchor, children } = props;
   const {
     top = 0,
-    right = 0,
+    left = 0,
     width = 0,
     height = 0,
   } = anchor?.getBoundingClientRect?.() || {};
+  const ref = useRef<HTMLDivElement>(null);
   const topPos = top + height;
-  const rightPos = right - width;
+  const rightCoordiateElement = left + width;
+  const isToggle = open && anchor;
+  const [xPos, setXPos] = useState(0);
+
+  useEffect(() => {
+    const divElement = ref.current;
+    if (isToggle && divElement) {
+      const firstChild = divElement.querySelector(':scope > *');
+      setXPos(rightCoordiateElement - (firstChild?.clientWidth || 0))
+    }
+  }, [isToggle, rightCoordiateElement, setXPos]);
+
   return (
     <>
-      {open && anchor && (
+      {isToggle && (
         <div
+          ref={ref}
           className={styles.portalContainer}
           style={{
             top: topPos,
-            right: rightPos,
+            left: xPos,
           }}
           data-testid="portal-container"
         >
